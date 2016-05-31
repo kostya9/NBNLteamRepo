@@ -84,7 +84,6 @@ int main(void)
 	button_t.loadFromImage(button);
 	Sprite button_s;
 	button_s.setTexture(button_t);
-	button_s.setScale(1.5, 2);
 	button_s.setPosition(900, 320);
 
     while(window.isOpen())
@@ -162,13 +161,9 @@ int main(void)
 				if (event.mouseButton.button == Mouse::Left)
 				{
 					if(event.mouseButton.x > 885 && event.mouseButton.x < 1090 && event.mouseButton.y > 310 && event.mouseButton.y < 410){
-						garage_stats_entry e{
-						1,
-						"CAR",
-						1,
-						 "MANUALLY"
-						};
-						html_gen("out.html", &e, 1);
+						vector<garage_stats_entry> entries;
+						db_get_garage_stats(con, entries);
+						html_gen("out.html", entries);
 						html_file_open("out.html");
 					}
 				}

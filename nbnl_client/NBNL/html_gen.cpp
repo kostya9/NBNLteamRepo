@@ -4,12 +4,13 @@
 #include <time.h>
 #include <Windows.h>
 #define HTML_BUFF_LEN 8192
-void html_gen(char * fileName, garage_stats_entry * entries, size_t count)
+void html_gen(char * fileName, vector<garage_stats_entry> entries)
 {
 	FILE * f = fopen(fileName, "w+");
 	char html_buf[HTML_BUFF_LEN] = "";
 	char table_buff[HTML_BUFF_LEN] = "";
 	strcat(table_buff, "<tr><th>ID</th><th>Type</th><th>ActionTime</th><th>Called</th></tr>");
+	int count = entries.size();
 	for (int i = 0; i < count; i++)
 	{
 		char entry_buf[HTML_BUFF_LEN];

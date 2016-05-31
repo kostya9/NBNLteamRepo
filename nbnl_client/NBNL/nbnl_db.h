@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <ctime>
 #include <vector>
+using namespace std;
 typedef struct db_con_s db_con_t;
 typedef struct garage_stats_entry {
 	size_t id;
@@ -20,8 +21,7 @@ typedef struct garage_stats_entry {
 } garage_stats_entry;
 void sortEntries(vector<garage_stats_entry> entries);
 db_con_t * db_connect(char * file_name);
-list_t * db_get_garage_stats(db_con_t * self);
-list_t * db_get_garage_stats_filtered(db_con_t * self, time_t from);
+void db_get_garage_stats(db_con_t * self, vector<garage_stats_entry>& refs);
 void db_add_entry(db_con_t * self, char * type, time_t actionTime, char * called);
 char * time_to_string(time_t time, char * buffer);
 void db_close(db_con_t * self);
